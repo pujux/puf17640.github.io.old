@@ -10,55 +10,21 @@
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="lib/onepage_scroll/jquery.onepage-scroll.min.js"></script>
 	<script src="lib/descrambler.min.js"></script>
+	<script src="main.js"></script>
 </head>
 <body>
 	<div id="main">
 		<div class="slide">
-			<span id="welcome-scramble" class="scramble" style="opacity:1" scramble="Welcome."></span>
+			<div class="container">
+				<span id="welcome-scramble" class="scramble" style="opacity:1" scramble="Welcome."></span>
+				<div class="footer">Made by Julian Pufler <a href="mailto:puf17640@spengergasse.at">(puf17640)</a></div>
+			</div>
 		</div>
 		<div class="slide">
-
+			<div class="container">
+				<div class="footer">Made by Julian Pufler <a href="mailto:puf17640@spengergasse.at">(puf17640)</a></div>
+			</div>
 		</div>
 	</div>
-	<script>
-		var scram = (id) => {
-			var f = ()=>$(id).text($(id).attr("scramble")).scramble().animate({opacity: 1}, 3000)
-			if($(id).is(":visible")) $(id).animate({opacity: 0}, 1500, f)
-			else f()
-		}
-
-		var params = () => {
-			var qs = document.location.search.split('+').join(' '),
-					p = {},
-					re = /[?&]?([^=]+)=([^&]*)/g,
-					t
-			while (t = re.exec(qs)) {
-					p[decodeURIComponent(t[1])] = decodeURIComponent(t[2])
-			}
-			return p
-		}
-
-		$("#main").onepage_scroll({
-			sectionContainer: ".slide",     
-			easing: "ease",                 
-			animationTime: 1000,
-			pagination: true,
-			updateURL: true,
-			beforeMove: function(index) {
-				console.log(`moving to ${index}`)
-				switch(index){
-					case 1:
-						scram("#welcome-scramble")
-				}
-			},
-			afterMove: function(index) {console.log(`moved to ${index}`)},
-			loop: false,
-			keyboard: true,
-			responsiveFallback: false,
-			direction: "vertical"  
-		});
-
-		scram("#welcome-scramble")
-	</script>
 </body>
 </html>
