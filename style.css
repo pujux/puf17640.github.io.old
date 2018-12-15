@@ -2,7 +2,6 @@
 		
 html, body {
 	font-family: 'Ubuntu Mono', monospace;
-	background: #212121 url(http://www.noisepng.com/200-50-3.png) top center;
 	height: 100%;
 	margin: 0 auto;
 	padding: 0;
@@ -10,6 +9,7 @@ html, body {
 
 .slide{
 	display: flex;
+	background: #fafafa url(http://www.noisepng.com/200-50-3.png) top center;
 	justify-content: center;
 	justify-items: center;
 }
@@ -19,14 +19,19 @@ html, body {
 	width: 100%;
 }
 
-.scramble {
+.text-typing {
 	position: absolute;
 	top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 	font-weight: 100;
-	font-size: 5rem;
-	color: #fafafa;
+	font-size: 80px;
+	color: #212121;
+}
+
+#welcome-text{
+	width: 440px;
+	height: 400px;
 }
 
 .footer{
@@ -34,10 +39,10 @@ html, body {
 	bottom: 15px;
 	right: 15px;
 	font-size: 20px;
-	color: rgba(250, 250, 250, 0.75);
+	color: rgba(33, 33, 33, 0.75);
 }
 
 .footer > a{
-	color: rgba(250, 250, 250, 0.5);
+	color: rgba(33, 33, 33, 0.5);
 	text-decoration: none;
 }
