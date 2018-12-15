@@ -69,12 +69,6 @@ $(window, document, undefined).ready(()=>{
 	]
 
 	var welcome_text = ()=>{
-		texttyping({
-			element: $("#welcome-text"),
-			speed: 125,
-			text: "Hi, I'm Julian and ",
-			finished: f
-		})
 		var f = ()=>{
 			var msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
 			texttyping({
@@ -93,6 +87,12 @@ $(window, document, undefined).ready(()=>{
 				}
 			})
 		}
+		texttyping({
+			element: $("#welcome-text"),
+			speed: 125,
+			text: "Hi, I'm Julian and ",
+			finished: f
+		})
 	}
 	welcome_text()
 })
