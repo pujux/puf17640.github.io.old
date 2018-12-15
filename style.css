@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700');
+		
+html, body {
+	font-family: 'Ubuntu Mono', monospace;
+	background: #212121;
+	height: 100%;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.slide{
+	display: flex;
+	justify-content: center;
+	justify-items: center;
+}
+
+.scramble {
+	position: absolute;
+	top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+	font-weight: 100;
+	font-size: 3.5rem;
+	color: #fafafa;
+}

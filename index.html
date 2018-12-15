@@ -5,37 +5,60 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Julian Pufler</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="lib/onepage_scroll/onepage-scroll.css">
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="lib/onepage_scroll/jquery.onepage-scroll.min.js"></script>
 	<script src="lib/descrambler.min.js"></script>
-	<style>
-		@import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700');
-		
-		html, body {
-			font-family: 'Ubuntu Mono', monospace;
-			background: #212121;
-			height: 100%;
-			margin: 0 auto;
-			padding: 0;
-		}
-
-		body {
-			width: 100%;
-			justify-content: center;
-			align-items: center;
-			display: flex;
-		}
-
-		.scramble {
-			font-weight: 100;
-			font-size: 3.5rem;
-			color: #fafafa;
-		}
-	</style>
 </head>
 <body>
-	<div class="scramble" style="opacity:0">Welcome.</div>
+	<div id="main">
+		<div class="slide">
+			<span id="welcome-scramble" class="scramble" style="opacity:1" scramble="Welcome."></span>
+		</div>
+		<div class="slide">
+
+		</div>
+	</div>
 	<script>
-			scram_interval=null;var scram=()=>{var f=()=>$(".scramble").text("Welcome").scramble().animate({opacity:1},3000);if($(".scramble").css("opacity")==1){$(".scramble").animate({opacity:0},1500,f)}else{f()}}scram();scram_interval=setInterval(scram,30000);
+		var scram = (id) => {
+			var f = ()=>$(id).text($(id).attr("scramble")).scramble().animate({opacity: 1}, 3000)
+			if($(id).is(":visible")) $(id).animate({opacity: 0}, 1500, f)
+			else f()
+		}
+
+		var params = () => {
+			var qs = document.location.search.split('+').join(' '),
+					p = {},
+					re = /[?&]?([^=]+)=([^&]*)/g,
+					t
+			while (t = re.exec(qs)) {
+					p[decodeURIComponent(t[1])] = decodeURIComponent(t[2])
+			}
+			return p
+		}
+
+		$("#main").onepage_scroll({
+			sectionContainer: ".slide",     
+			easing: "ease",                 
+			animationTime: 1000,
+			pagination: true,
+			updateURL: true,
+			beforeMove: function(index) {
+				console.log(`moving to ${index}`)
+				switch(index){
+					case 1:
+						scram("#welcome-scramble")
+				}
+			},
+			afterMove: function(index) {console.log(`moved to ${index}`)},
+			loop: false,
+			keyboard: true,
+			responsiveFallback: false,
+			direction: "vertical"  
+		});
+
+		scram("#welcome-scramble")
 	</script>
 </body>
 </html>
