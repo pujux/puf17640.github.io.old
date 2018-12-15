@@ -9,7 +9,7 @@ html, body {
 
 .slide{
 	display: flex;
-	background: #fafafa url(http://www.noisepng.com/200-50-3.png) top center;
+	background: #eaeaea url(http://www.noisepng.com/500-75-7.png) top center;
 	justify-content: center;
 	justify-items: center;
 }
@@ -30,7 +30,7 @@ html, body {
 }
 
 #welcome-text{
-	width: 440px;
+	width: 450px;
 	height: 400px;
 }
 

@@ -1,11 +1,13 @@
 $(window, document, undefined).ready(()=>{
+	CURRENT_INDEX = parseInt(window.location.href.split("#")[1]||"1")
+	console.log(CURRENT_INDEX)
 
-	var texttyping = (options) => {
-		var el = options["element"]
+	let texttyping = (options) => {
+		let el = options["element"]
 		if(el.attr("is-typing")=="true")return;
 		el.attr("is-typing", true)
-		var i = options["remove_chars"]||0, txt = options["text"], speed = options["speed"]||125
-		var functions = {
+		let i = options["remove_chars"]||0, txt = options["text"], speed = options["speed"]||125
+		let functions = {
 			add: ()=>{
 							el.text(el.text()+txt[i])
 							if(i == txt.length-1){
@@ -17,7 +19,7 @@ $(window, document, undefined).ready(()=>{
 							setTimeout(functions["add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 						},
 			remove: ()=>{
-							var txt = el.text()
+							let txt = el.text()
 							el.text(txt.substr(0, txt.length-1))
 							if(i == 1){
 								el.attr("is-typing", false)
@@ -31,8 +33,8 @@ $(window, document, undefined).ready(()=>{
 		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 	}
 
-	var params = () => {
-		var qs = document.location.search.split('+').join(' '),
+	let params = () => {
+		let qs = document.location.search.split('+').join(' '),
 				p = {},
 				re = /[?&]?([^=]+)=([^&]*)/g,
 				t
@@ -49,12 +51,17 @@ $(window, document, undefined).ready(()=>{
 		pagination: true,
 		updateURL: true,
 		beforeMove: (index) => {
-			var div = $(`div[data-index=${index}]`)
+			let div = $(`div[data-index=${index}]`)
 			$(div).find(".container").css("opacity", 0)
 		},
 		afterMove: (index) => {
-			var div = $(`div[data-index=${index}]`)
+			CURRENT_INDEX = index
+			let div = $(`div[data-index=${index}]`)
 			$(div).find(".container").animate({opacity: 1}, 250)
+			switch(index){
+				case 1:
+					welcome_text()
+			}
 		},
 		loop: false,
 		keyboard: true,
@@ -62,15 +69,19 @@ $(window, document, undefined).ready(()=>{
 		direction: "vertical"  
 	});
 
-	var welcome_text_list = [
+	let welcome_text_list = [
 		"programming is my passion.",
 		"this is my website.",
-		"I love writing code."
+		"I love writing code.",
+		"I am 17 years old.",
+		"I am from Austria.",
+		"I still go to school.",
+		"you can find me on GitHub."
 	]
 
-	var welcome_text = ()=>{
-		var f = ()=>{
-			var msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
+	let welcome_text = ()=>{
+			if(CURRENT_INDEX != 1)return
+			let msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
 			texttyping({
 				element: $("#welcome-text"),
 				speed: 100,
@@ -81,18 +92,16 @@ $(window, document, undefined).ready(()=>{
 						speed: 200,
 						remove_chars: msg.length,
 						finished: ()=>{
-							setTimeout(f, 500)
+							setTimeout(welcome_text, 500)
 						}
 					}), 1000)
 				}
 			})
 		}
-		texttyping({
-			element: $("#welcome-text"),
-			speed: 125,
-			text: "Hi, I'm Julian and ",
-			finished: f
-		})
-	}
-	welcome_text()
+	texttyping({
+		element: $("#welcome-text"),
+		speed: 125,
+		text: "Hi, I'm Julian and ",
+		finished: welcome_text
+	})
 })
