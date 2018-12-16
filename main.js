@@ -119,5 +119,12 @@ $(window, document, undefined).ready(()=>{
 		VISITED[i] = true
 	}
 
-	afterMoveFunction(CURRENT_INDEX)
+	if($("body").hasClass("disabled-onepage-scroll")) show_welcome(1)
+	else afterMoveFunction(CURRENT_INDEX)
+
+	$("#github-corner").hover((e)=>{
+		$(".octo-arm").addClass("wave")
+	}).on("animationiteration", (e)=>{
+		if(!$("#github-corner:hover")[0])$(".octo-arm").removeClass("wave")
+	})
 })
