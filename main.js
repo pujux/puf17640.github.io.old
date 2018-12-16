@@ -65,7 +65,7 @@ $(window, document, undefined).ready(()=>{
 		},
 		loop: false,
 		keyboard: true,
-		responsiveFallback: 600,
+		responsiveFallback: false,
 		direction: "vertical"  
 	});
 
@@ -103,7 +103,7 @@ $(window, document, undefined).ready(()=>{
 	texttyping({
 		element: $("#welcome-text"),
 		speed: 125,
-		text: "Hi, I'm Julian and ",
+		text: "Hey, I'm Julian and ",
 		finished: welcome_text
 	})
 })

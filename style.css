@@ -7,6 +7,10 @@ html, body {
 	padding: 0;
 }
 
+*:focus{
+  outline: none;
+}
+
 .slide{
 	display: flex;
 	background: #ddd url(http://www.noisepng.com/256-65-5.png) top center;
@@ -34,15 +38,55 @@ html, body {
 	height: 450px;
 }
 
-.footer{
+.bubble{
 	position: absolute;
-	bottom: 15px;
-	right: 15px;
-	font-size: 20px;
-	color: rgba(33, 33, 33, 0.75);
+	display: inline-flex;
+	line-height: 1.5;
+	top: 35px;
+	right: 35px;
+	--color: #212121;
+	color: var(--color);
+	border: 2px solid var(--color);
+	border-radius: 290486px;
+	font-family: "europa", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+	padding: 6px 15px 5px 15px;
+	text-align: center;
+	white-space: nowrap;
+	cursor: pointer;
+	justify-content: center;
+	transition: all .2s ease-in-out;
 }
 
-.footer > a{
-	color: rgba(33, 33, 33, 0.5);
-	text-decoration: none;
+.bubble:hover, .bubble:focus {
+	background-color: var(--color);
+	border-color: var(--color);
+	color: #fff;
+}
+
+#say-hello{
+	--color: #555;
+}
+
+@media (orientation: portrait) {
+	#say-hello{
+		left: 50px;
+		right: 50px;
+		font-size: 75px;
+		font-weight: 600;
+		border-width: 7.5px;
+	}
+
+	#welcome-text{
+		font-size: 180px;
+		width: 90%;
+		height: 40%;
+	}
+}
+
+@media (orientation: landscape) {
+	#say-hello{
+		display: block;
+	}
 }
