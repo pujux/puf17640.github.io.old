@@ -9,6 +9,7 @@ $(window, document, undefined).ready(()=>{
 		if(el.attr("is-typing")=="true")return;
 		el.attr("is-typing", true)
 		let i = options["remove_chars"]||0, txt = options["text"], speed = options["speed"]||125
+		if(!options["remove_chars"])el.text("")
 		let functions = {
 			add: ()=>{
 							el.text(el.text()+txt[i])
