@@ -2,6 +2,8 @@ $(window, document, undefined).ready(()=>{
 	CURRENT_INDEX = parseInt(window.location.href.split("#")[1]?window.location.href.split("#")[1].substr(0, 1):"1")
 	console.log(CURRENT_INDEX)
 
+	VISITED = []
+
 	let texttyping = (options) => {
 		let el = options["element"]
 		if(el.attr("is-typing")=="true")return;
@@ -33,26 +35,35 @@ $(window, document, undefined).ready(()=>{
 		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 	}
 
+	let afterMoveFunction = (index) => {
+		CURRENT_INDEX = index
+		let div = $(`div[data-index=${index}]`)
+		$(div).find(".container").animate({opacity: 1}, 250)
+		switch(index){
+			case 1:
+				show_welcome(index)
+				break
+			case 2:
+				show_projects(index)
+				break
+			case 3:
+				show_contact(index)
+				break
+		}
+	}
+
 	$("#main").onepage_scroll({
 		sectionContainer: ".slide",     
-		easing: "ease",                 
+		easing: "cubic-bezier(.5,0,.5,1)",                 
 		animationTime: 1000,
 		pagination: true,
 		updateURL: true,
 		beforeMove: (index) => {
-			let div = $(`div[data-index=${index}]`)
-			//$(div).find(".container").css("opacity", 0)
+			let div = $(`div[data-index=${CURRENT_INDEX}]`)
+			$(div).find(".container").animate({opacity: 0}, 250)
 		},
-		afterMove: (index) => {
-			CURRENT_INDEX = index
-			let div = $(`div[data-index=${index}]`)
-			//$(div).find(".container").animate({opacity: 1}, 250)
-			switch(index){
-				case 1:
-					welcome_text()
-			}
-		},
-		loop: false,
+		afterMove: afterMoveFunction,
+		loop: true,
 		keyboard: true,
 		responsiveFallback: false,
 		direction: "vertical"  
@@ -66,11 +77,11 @@ $(window, document, undefined).ready(()=>{
 		"I am from Vienna, Austria.",
 		"I still go to school.",
 		"you can find me on GitHub.",
-		"this is a work in progress. ☺",
+		"this is a work in progress.",
 	]
 
-	let welcome_text = ()=>{
-			if(CURRENT_INDEX != 1)return
+	let show_welcome = (i)=>{
+		var f = ()=>{
 			let msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
 			texttyping({
 				element: $("#welcome-text-2"),
@@ -82,16 +93,35 @@ $(window, document, undefined).ready(()=>{
 						speed: 200,
 						remove_chars: $("#welcome-text-2").text().length,
 						finished: ()=>{
-							setTimeout(welcome_text, 500)
+							setTimeout(f, 500)
 						}
 					}), 1000)
 				}
 			})
 		}
-	texttyping({
-		element: $("#welcome-text-1"),
-		speed: 125,
-		text: "Hi, I'm Julian and ",
-		finished: welcome_text
-	})
+		if(!VISITED[i]){
+			VISITED[i] = true
+			console.log("WELCOME")
+			texttyping({
+				element: $("#welcome-text-1"),
+				speed: 125,
+				text: "Hi, I'm Julian and ",
+				finished: f
+			})
+		}else f()
+	}
+
+	let show_projects = (i)=>{
+		if(VISITED[i])return
+		VISITED[i] = true
+		console.log("PROJECTS")	
+	}
+
+	let show_contact = (i)=>{
+		if(VISITED[i])return	
+		VISITED[i] = true
+		console.log("CONTACT")	
+	}
+
+	afterMoveFunction(CURRENT_INDEX)
 })

@@ -6,6 +6,7 @@ html, body {
 	height: 100%;
 	margin: 0 auto;
 	padding: 0;
+	font-size: 30px;
 }
 
 body{
@@ -13,6 +14,7 @@ body{
 	--secondary-text-color: rgb(223, 223, 223);
 	--tertiary-text-color: rgb(66, 66, 66);
 	--background-color: rgb(191, 191, 191);
+	--background-color-2: rgb(183, 183, 183);
 }
 
 body.inverted{
@@ -20,6 +22,7 @@ body.inverted{
 	--secondary-text-color: rgb(33, 33, 33);
 	--tertiary-text-color: rgb(190, 190, 190);
 	--background-color: rgb(63, 63, 63);
+	--background-color-2: rgb(71, 71, 71);
 }
 
 .onepage-pagination li a.active:before {
@@ -39,13 +42,20 @@ body.inverted{
 	background: var(--background-color) url(http://www.noisepng.com/256-65-5.png) top center;
 	justify-content: center;
 	justify-items: center;
-	color: var(--primary-text-color)
+	color: var(--primary-text-color);
+}
+
+.slide:nth-child(2){
+	--background-color: var(--background-color-2)
 }
 
 .container{
 	position: relative;
+	display: flex;
+	justify-content: center;
+	justify-items: center;
 	width: 100%;
-	padding: 3rem;
+	padding: 2rem;
 }
 
 .text-typing {
@@ -54,12 +64,12 @@ body.inverted{
   left: 50%;
   transform: translate(-50%, -50%);
 	font-weight: 100;
-	font-size: 90px;
+	font-size: 3rem;
 }
 
 #welcome-text{
-	width: 500px;
-	height: 500px;
+	width: 17rem;
+	height: 17rem;
 	color: var(--primary-text-color);
 }
 
@@ -77,8 +87,8 @@ body.inverted{
 	background-color: transparent;
 	font-family: "Raleway", sans-serif;
   font-weight: 600;
-  font-size: 20px;
-	padding: 8px 15px 7px 15px;
+  font-size: 0.75rem;
+	padding: 8px 0.5rem 7px 0.5rem;
 	text-align: center;
 	white-space: nowrap;
 	cursor: pointer;
@@ -92,25 +102,48 @@ body.inverted{
 }
 
 #say-hello{
-	top: 35px;
-	right: 35px;
+	top: 3rem;
+	left: 1rem;
 }
 
 #invert-page{
-	top: 35px;
-	left: 35px;
+	top: 1rem;
+	left: 1rem;
 }
 
-@media (orientation: portrait) {
-	#welcome-text{
-		font-size: 3.5rem;
-		width: 90%;
-		height: 40%;
+.github-corner > svg{
+	fill:#151513; 
+	color:#fff; 
+	position: absolute; 
+	top: 0; 
+	border: 0; 
+	right: 0;
+}
+
+.github-corner:hover .octo-arm{
+	animation: octocat-wave 560ms ease-in-out
+}
+
+@keyframes octocat-wave{
+	0%, 100%{
+		transform:rotate(0)
+	}
+	
+	20%,60%{
+		transform:rotate(-25deg)
+	}
+
+	40%,80%{
+		transform:rotate(10deg)
 	}
 }
 
-@media (orientation: landscape) {
-	#say-hello{
-		display: block;
+@media (max-width:500px){
+	.github-corner:hover .octo-arm{
+		animation:none
+	}
+
+	.github-corner .octo-arm{
+		animation:octocat-wave 560ms ease-in-out
 	}
 }
