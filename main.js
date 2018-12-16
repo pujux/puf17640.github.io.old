@@ -9,7 +9,7 @@ $(window, document, undefined).ready(()=>{
 		let i = options["remove_chars"]||0, txt = options["text"], speed = options["speed"]||125
 		let functions = {
 			add: ()=>{
-							el.text(el.text()+txt[i])
+							el.html(el.html()+txt[i])
 							if(i == txt.length-1){
 								el.attr("is-typing", false)
 								options["finished"]&&options["finished"]()								
@@ -19,8 +19,8 @@ $(window, document, undefined).ready(()=>{
 							setTimeout(functions["add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 						},
 			remove: ()=>{
-							let txt = el.text()
-							el.text(txt.substr(0, txt.length-1))
+							let txt = el.html()
+							el.html(txt.substr(0, txt.length-1))
 							if(i == 1){
 								el.attr("is-typing", false)
 								options["finished"]&&options["finished"]()
@@ -65,7 +65,7 @@ $(window, document, undefined).ready(()=>{
 		},
 		loop: false,
 		keyboard: true,
-		responsiveFallback: false,
+		responsiveFallback: 600,
 		direction: "vertical"  
 	});
 
@@ -76,7 +76,9 @@ $(window, document, undefined).ready(()=>{
 		"I am 17 years old.",
 		"I am from Austria.",
 		"I still go to school.",
-		"you can find me on GitHub."
+		"you can find me on GitHub.",
+		"this website is work in progress.",
+		"I participate in Advent of Code."
 	]
 
 	let welcome_text = ()=>{

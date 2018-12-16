@@ -20,7 +20,7 @@ body, .onepage-wrapper, html {
   display: block;
   position: relative;
   padding: 0;
-  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .onepage-wrapper .section {
@@ -37,10 +37,12 @@ body, .onepage-wrapper, html {
   margin: 0;
   padding: 0;
 }
+
 .onepage-pagination li {
   padding: 0;
   text-align: center;
 }
+
 .onepage-pagination li a{
   padding: 10px;
   width: 4px;
@@ -48,6 +50,7 @@ body, .onepage-wrapper, html {
   display: block;
   
 }
+
 .onepage-pagination li a:before{
   content: '';
   position: absolute;
@@ -77,6 +80,7 @@ body, .onepage-wrapper, html {
   top: auto !important;
   left: auto !important;
 }
+
 .disabled-onepage-scroll .onepage-wrapper {
   -webkit-transform: none !important;
   -moz-transform: none !important;
@@ -84,7 +88,6 @@ body, .onepage-wrapper, html {
   -ms-transform: none !important;
   min-height: 100%;
 }
-
 
 .disabled-onepage-scroll .onepage-pagination {
   display: none;
