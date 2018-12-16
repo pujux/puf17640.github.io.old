@@ -64,9 +64,9 @@ $(window, document, undefined).ready(()=>{
 			$(div).find(".container").animate({opacity: 0}, 250)
 		},
 		afterMove: afterMoveFunction,
-		loop: true,
+		loop: false,
 		keyboard: true,
-		responsiveFallback: false,
+		responsiveFallback: 900,
 		direction: "vertical"  
 	});
 
