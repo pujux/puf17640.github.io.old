@@ -1,7 +1,5 @@
 $(window, document, undefined).ready(()=>{
 	CURRENT_INDEX = parseInt(window.location.href.split("#")[1]?window.location.href.split("#")[1].substr(0, 1):"1")
-	console.log(CURRENT_INDEX)
-
 	VISITED = []
 
 	let texttyping = (options) => {
@@ -78,7 +76,7 @@ $(window, document, undefined).ready(()=>{
 		"I am from Vienna, Austria.",
 		"I still go to school.",
 		"you can find me on GitHub.",
-		"this is a work in progress.",
+		"this is work in progress.",
 	]
 
 	let show_welcome = (i)=>{
@@ -102,7 +100,6 @@ $(window, document, undefined).ready(()=>{
 		}
 		if(!VISITED[i]){
 			VISITED[i] = true
-			console.log("WELCOME")
 			texttyping({
 				element: $("#welcome-text-1"),
 				speed: 125,
@@ -115,13 +112,11 @@ $(window, document, undefined).ready(()=>{
 	let show_projects = (i)=>{
 		if(VISITED[i])return
 		VISITED[i] = true
-		console.log("PROJECTS")	
 	}
 
 	let show_contact = (i)=>{
 		if(VISITED[i])return	
 		VISITED[i] = true
-		console.log("CONTACT")	
 	}
 
 	afterMoveFunction(CURRENT_INDEX)
