@@ -156,3 +156,14 @@ a{
 		animation:octocat-wave 560ms ease-in-out
 	}
 }
+
+@media (orientation: portrait){
+	.bubble{
+		display: none;
+	}
+
+	#welcome-text{
+		height: 90%;
+		width: 90%;
+	}
+}
