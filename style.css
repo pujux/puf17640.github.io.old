@@ -157,7 +157,7 @@ a{
 	}
 }
 
-@media (orientation: portrait){
+@media handheld{
 	.bubble{
 		display: none;
 	}
