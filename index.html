@@ -15,8 +15,16 @@
 	<div id="main">
 		<div class="slide">
 			<div class="container">
-				<span id="welcome-text" class="text-typing"></span>
-				<a id="say-hello" class="bubble"><span>Say Hello</span></a>
+				<div id="welcome-text" class="text-typing">
+					<span id="welcome-text-1"></span><br>
+					<span id="welcome-text-2"></span>
+				</div>
+				<a id="say-hello" class="bubble" onclick="javascript:$('#main').moveTo(3)"><span>say hello</span></a>
+				<a id="invert-page" class="bubble" onclick="javascript:$('body').toggleClass('inverted')"><span>invert</span></a>
+			</div>
+		</div>
+		<div class="slide">
+			<div class="container">
 			</div>
 		</div>
 		<div class="slide">

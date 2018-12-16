@@ -1,5 +1,5 @@
 $(window, document, undefined).ready(()=>{
-	CURRENT_INDEX = parseInt(window.location.href.split("#")[1]||"1")
+	CURRENT_INDEX = parseInt(window.location.href.split("#")[1]?window.location.href.split("#")[1].substr(0, 1):"1")
 	console.log(CURRENT_INDEX)
 
 	let texttyping = (options) => {
@@ -9,7 +9,7 @@ $(window, document, undefined).ready(()=>{
 		let i = options["remove_chars"]||0, txt = options["text"], speed = options["speed"]||125
 		let functions = {
 			add: ()=>{
-							el.html(el.html()+txt[i])
+							el.text(el.text()+txt[i])
 							if(i == txt.length-1){
 								el.attr("is-typing", false)
 								options["finished"]&&options["finished"]()								
@@ -19,8 +19,8 @@ $(window, document, undefined).ready(()=>{
 							setTimeout(functions["add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 						},
 			remove: ()=>{
-							let txt = el.html()
-							el.html(txt.substr(0, txt.length-1))
+							let txt = el.text()
+							el.text(txt.substr(0, txt.length-1))
 							if(i == 1){
 								el.attr("is-typing", false)
 								options["finished"]&&options["finished"]()
@@ -33,17 +33,6 @@ $(window, document, undefined).ready(()=>{
 		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 	}
 
-	let params = () => {
-		let qs = document.location.search.split('+').join(' '),
-				p = {},
-				re = /[?&]?([^=]+)=([^&]*)/g,
-				t
-		while (t = re.exec(qs)) {
-				p[decodeURIComponent(t[1])] = decodeURIComponent(t[2])
-		}
-		return p
-	}
-
 	$("#main").onepage_scroll({
 		sectionContainer: ".slide",     
 		easing: "ease",                 
@@ -52,12 +41,12 @@ $(window, document, undefined).ready(()=>{
 		updateURL: true,
 		beforeMove: (index) => {
 			let div = $(`div[data-index=${index}]`)
-			$(div).find(".container").css("opacity", 0)
+			//$(div).find(".container").css("opacity", 0)
 		},
 		afterMove: (index) => {
 			CURRENT_INDEX = index
 			let div = $(`div[data-index=${index}]`)
-			$(div).find(".container").animate({opacity: 1}, 250)
+			//$(div).find(".container").animate({opacity: 1}, 250)
 			switch(index){
 				case 1:
 					welcome_text()
@@ -74,25 +63,24 @@ $(window, document, undefined).ready(()=>{
 		"this is my website.",
 		"I love writing code.",
 		"I am 17 years old.",
-		"I am from Austria.",
+		"I am from Vienna, Austria.",
 		"I still go to school.",
 		"you can find me on GitHub.",
-		"this website is work in progress.",
-		"I participate in Advent of Code."
+		"this is a work in progress. ☺",
 	]
 
 	let welcome_text = ()=>{
 			if(CURRENT_INDEX != 1)return
 			let msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
 			texttyping({
-				element: $("#welcome-text"),
+				element: $("#welcome-text-2"),
 				speed: 100,
 				text: msg,
 				finished: ()=>{
 					setTimeout(()=>texttyping({
-						element: $("#welcome-text"),
+						element: $("#welcome-text-2"),
 						speed: 200,
-						remove_chars: msg.length,
+						remove_chars: $("#welcome-text-2").text().length,
 						finished: ()=>{
 							setTimeout(welcome_text, 500)
 						}
@@ -101,9 +89,9 @@ $(window, document, undefined).ready(()=>{
 			})
 		}
 	texttyping({
-		element: $("#welcome-text"),
+		element: $("#welcome-text-1"),
 		speed: 125,
-		text: "Hey, I'm Julian and ",
+		text: "Hi, I'm Julian and ",
 		finished: welcome_text
 	})
 })

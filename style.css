@@ -1,10 +1,33 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700');
-		
+@import url('https://fonts.googleapis.com/css?family=Raleway:600');
+
 html, body {
-	font-family: 'Ubuntu Mono', monospace;
+	font-family: 'Raleway', sans-serif;
 	height: 100%;
 	margin: 0 auto;
 	padding: 0;
+}
+
+body{
+	--primary-text-color: rgb(33, 33, 33);
+	--secondary-text-color: rgb(223, 223, 223);
+	--tertiary-text-color: rgb(66, 66, 66);
+	--background-color: rgb(191, 191, 191);
+}
+
+body.inverted{
+	--primary-text-color: rgb(223, 223, 223);
+	--secondary-text-color: rgb(33, 33, 33);
+	--tertiary-text-color: rgb(190, 190, 190);
+	--background-color: rgb(63, 63, 63);
+}
+
+.onepage-pagination li a.active:before {
+	border: 1px solid var(--secondary-text-color) !important;
+}
+
+.onepage-pagination li a:before {
+	background: var(--primary-text-color) !important;
 }
 
 *:focus{
@@ -13,14 +36,16 @@ html, body {
 
 .slide{
 	display: flex;
-	background: #ddd url(http://www.noisepng.com/256-65-5.png) top center;
+	background: var(--background-color) url(http://www.noisepng.com/256-65-5.png) top center;
 	justify-content: center;
 	justify-items: center;
+	color: var(--primary-text-color)
 }
 
 .container{
 	position: relative;
 	width: 100%;
+	padding: 3rem;
 }
 
 .text-typing {
@@ -30,56 +55,55 @@ html, body {
   transform: translate(-50%, -50%);
 	font-weight: 100;
 	font-size: 90px;
-	color: #212121;
 }
 
 #welcome-text{
 	width: 500px;
-	height: 450px;
+	height: 500px;
+	color: var(--primary-text-color);
+}
+
+#welcome-text-2{
+	color: var(--secondary-text-color);
 }
 
 .bubble{
 	position: absolute;
-	display: inline-flex;
-	line-height: 1.5;
-	top: 35px;
-	right: 35px;
-	--color: #212121;
-	color: var(--color);
-	border: 2px solid var(--color);
+	user-select: none;
+	-webkit-user-drag: none;
+	color: var(--primary-text-color);
+	border: 2px solid var(--primary-text-color);
 	border-radius: 290486px;
-	font-family: "europa", sans-serif;
-  font-weight: 400;
+	background-color: transparent;
+	font-family: "Raleway", sans-serif;
+  font-weight: 600;
   font-size: 20px;
-	padding: 6px 15px 5px 15px;
+	padding: 8px 15px 7px 15px;
 	text-align: center;
 	white-space: nowrap;
 	cursor: pointer;
-	justify-content: center;
 	transition: all .2s ease-in-out;
 }
 
 .bubble:hover, .bubble:focus {
-	background-color: var(--color);
-	border-color: var(--color);
-	color: #fff;
+	background-color: var(--primary-text-color);
+	border-color: var(--tertiary-text-color);
+	color: var(--secondary-text-color);
 }
 
 #say-hello{
-	--color: #555;
+	top: 35px;
+	right: 35px;
+}
+
+#invert-page{
+	top: 35px;
+	left: 35px;
 }
 
 @media (orientation: portrait) {
-	#say-hello{
-		left: 50px;
-		right: 50px;
-		font-size: 75px;
-		font-weight: 600;
-		border-width: 7.5px;
-	}
-
 	#welcome-text{
-		font-size: 180px;
+		font-size: 3.5rem;
 		width: 90%;
 		height: 40%;
 	}
