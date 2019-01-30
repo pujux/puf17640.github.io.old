@@ -1,6 +1,4 @@
 $(window, document, undefined).ready(()=>{
-	CURRENT_INDEX = parseInt(window.location.href.split("#")[1]?window.location.href.split("#")[1].substr(0, 1):"1")
-	VISITED = []
 
 	let texttyping = (options) => {
 		let el = options["element"]
@@ -34,40 +32,6 @@ $(window, document, undefined).ready(()=>{
 		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
 	}
 
-	let afterMoveFunction = (index) => {
-		CURRENT_INDEX = index
-		let div = $(`div[data-index=${index}]`)
-		$(div).find(".container").animate({opacity: 1}, 250)
-		switch(index){
-			case 1:
-				show_welcome(index)
-				break
-			case 2:
-				show_projects(index)
-				break
-			case 3:
-				show_contact(index)
-				break
-		}
-	}
-
-	$("#main").onepage_scroll({
-		sectionContainer: ".slide",     
-		easing: "cubic-bezier(.5,0,.5,1)",                 
-		animationTime: 1000,
-		pagination: true,
-		updateURL: true,
-		beforeMove: (index) => {
-			let div = $(`div[data-index=${CURRENT_INDEX}]`)
-			$(div).find(".container").animate({opacity: 0}, 250)
-		},
-		afterMove: afterMoveFunction,
-		loop: false,
-		keyboard: true,
-		responsiveFallback: 900,
-		direction: "vertical"  
-	});
-
 	let welcome_text_list = [
 		"programming is my passion.",
 		"this is my website.",
@@ -75,11 +39,10 @@ $(window, document, undefined).ready(()=>{
 		"I am 17 years old.",
 		"I am from Vienna, Austria.",
 		"I still go to school.",
-		"you can find me on GitHub.",
-		"this is work in progress.",
+		"you can find me on GitHub."
 	]
 
-	let show_welcome = (i)=>{
+	let show_welcome = ()=>{
 		var f = ()=>{
 			let msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
 			texttyping({
@@ -98,33 +61,19 @@ $(window, document, undefined).ready(()=>{
 				}
 			})
 		}
-		if(!VISITED[i]){
-			VISITED[i] = true
-			texttyping({
-				element: $("#welcome-text-1"),
-				speed: 125,
-				text: "Hi, I'm Julian and ",
-				finished: f
-			})
-		}else f()
+		texttyping({
+			element: $("#welcome-text-1"),
+			speed: 125,
+			text: "Hi, I'm Julian and ",
+			finished: f
+		})
 	}
-
-	let show_projects = (i)=>{
-		if(VISITED[i])return
-		VISITED[i] = true
-	}
-
-	let show_contact = (i)=>{
-		if(VISITED[i])return	
-		VISITED[i] = true
-	}
-
-	if($("body").hasClass("disabled-onepage-scroll")) show_welcome(1)
-	else afterMoveFunction(CURRENT_INDEX)
 
 	$("#github-corner").hover((e)=>{
 		$(".octo-arm").addClass("wave")
 	}).on("animationiteration", (e)=>{
 		if(!$("#github-corner:hover")[0])$(".octo-arm").removeClass("wave")
 	})
+
+	show_welcome()
 })
