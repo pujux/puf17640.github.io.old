@@ -1,4 +1,16 @@
 $(window, document, undefined).ready(()=>{
+	let rand_numbers;
+	$.ajax({
+		url: "https://www.random.org/integers/?num=500&min=0&max=6&col=1&base=10&format=plain&rnd=new",
+		success: (data)=>{
+			rand_numbers = data.split("\n")
+			console.log(rand_numbers)
+		},
+		error: (e)=>{
+			console.error(e)
+		}
+	})
+
 
 	let texttyping = (options) => {
 		let el = options["element"]
@@ -44,7 +56,7 @@ $(window, document, undefined).ready(()=>{
 
 	let show_welcome = ()=>{
 		var f = ()=>{
-			let msg = welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)]
+			let msg = welcome_text_list[rand_numbers[Math.floor(Math.random()*500)]]
 			texttyping({
 				element: $("#welcome-text-2"),
 				speed: 100,
