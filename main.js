@@ -1,17 +1,24 @@
-let welcome_text_list = [
-	"I am "+ (new Date()).getFullYear()-2001+" years old.",
-]
+let welcome_text_list = shuffle([
+	("I am "+ ((new Date()).getFullYear()-2001)+" years old."),
+	"Welcome to my personal website.",
+	"I am always searching for new challenges.",
+	"I am currently working on my diploma project.",
+	"I am from Austria.",
+	"I do a lot of coding in my free time."
+])
+
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
 
 $(window, document, undefined).ready(()=>{
-	let rand_numbers;
-	let rand_count = 0;
-	
-	$.ajax({
-		url: `https://www.random.org/integers/?num=500&min=0&max=${welcome_text_list.length-1}&col=1&base=10&format=plain&rnd=new`,
-		success: (data)=> rand_numbers = data.split("\n"),
-		error: console.error
-	})
-
 	let texttyping = (options) => {
 		let el = options["element"]
 		if(el.attr("is-typing")=="true")return;
@@ -27,7 +34,7 @@ $(window, document, undefined).ready(()=>{
 					return
 				}else
 					i++
-				setTimeout(functions["add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
+				setTimeout(functions["add"], speed+(Math.random()*(speed*0.2)))
 			},
 			remove: ()=>{
 				let txt = el.text()
@@ -38,20 +45,18 @@ $(window, document, undefined).ready(()=>{
 					return
 				}else
 					i--
-				setTimeout(functions["remove"], speed+(Math.random()*(speed*0.2)-speed*0.1))
+				setTimeout(functions["remove"], speed+(Math.random()*(speed*0.2)))
 			}
 		}
-		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)-speed*0.1))
+		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)))
 	}
 
 	let show_welcome = ()=>{
-		var f = ()=>{
-			let msg = welcome_text_list[rand_numbers[(rand_count%500)]]
-			rand_count++
+		let f = ()=>{
 			texttyping({
 				element: $("#welcome-text-2"),
 				speed: 100,
-				text: msg,
+				text: welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)],
 				finished: ()=>{
 					setTimeout(()=>texttyping({
 						element: $("#welcome-text-2"),
@@ -67,7 +72,7 @@ $(window, document, undefined).ready(()=>{
 		texttyping({
 			element: $("#welcome-text-1"),
 			speed: 125,
-			text: "Hi, my name is Julian and ",
+			text: "Hello, my name is Julian.",
 			finished: f
 		})
 	}
