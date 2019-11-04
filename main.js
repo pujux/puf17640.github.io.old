@@ -1,10 +1,5 @@
 let welcome_text_list = [
-	"programming is my passion.",
-	"I love writing code.",
-	"I am 18 years old.",
-	"I am from Vienna.",
-	"I still go to school.",
-	"you can find me on GitHub.",
+	"I am "+ (new Date()).getFullYear()-2001+" years old.",
 ]
 
 $(window, document, undefined).ready(()=>{
@@ -76,12 +71,5 @@ $(window, document, undefined).ready(()=>{
 			finished: f
 		})
 	}
-
-	$("#github-corner").hover((e)=>{
-		$(".octo-arm").addClass("wave")
-	}).on("animationiteration", (e)=>{
-		if(!$("#github-corner:hover")[0])$(".octo-arm").removeClass("wave")
-	})
-
 	show_welcome()
 })
