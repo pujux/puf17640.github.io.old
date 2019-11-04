@@ -67,7 +67,7 @@ $(window, document, undefined).ready(()=>{
 		texttyping({
 			element: $("#welcome-text-1"),
 			speed: 125,
-			text: "Hi, I'm Julian and ",
+			text: "Hi, my name is Julian and ",
 			finished: f
 		})
 	}
