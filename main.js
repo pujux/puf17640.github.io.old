@@ -10,28 +10,6 @@ let textList = [
 ]
 
 $(window, document, undefined).ready(()=>{
-
-	$(document).on("scroll", (e)=> {
-		return
-		var screenHeight = $("#main").height()
-		if (window.scrollY >= screenHeight)
-			$("#scroll-top").parent().show()
-		else
-			$("#scroll-top").parent().hide()
-
-		if(window.scrollY < screenHeight || window.scrollY >= 2*screenHeight)
-			$("#my-projects").parent().show()
-		else
-			$("#my-projects").parent().hide()
-		
-		if(window.scrollY < 2*screenHeight)
-			$("#my-resume").parent().show()
-		else
-			$("#my-resume").parent().hide()
-	})
-
-	$(document).trigger("scroll")
-
 	let textTyping = (options) => {
 		let el = options["element"]
 		if(el.attr("is-typing")=="true")return;
