@@ -15,9 +15,15 @@ body{
 	--tertiary-text-color: rgb(159, 159, 159);
 	--background-color: rgb(85, 85, 85);
 	--background-color-2: rgb(89, 89, 89);
+	color: var(--primary-text-color);
+	transition: color .5s;
+	transition: background-color .5s;
+	background: var(--background-color) url(noise.png) top center;
+	user-select: none;
+	-webkit-user-drag: none;
 }
 
-body.inverted{
+body.inverted {
 	--primary-text-color: rgb(33, 33, 33);
 	--secondary-text-color: rgb(223, 223, 223);
 	--tertiary-text-color: rgb(97, 97, 97);
@@ -25,28 +31,25 @@ body.inverted{
 	--background-color-2: rgb(167, 167, 167);
 }
 
-a{
+a {
 	text-decoration: none;
 	color: var(--tertiary-text-color);
 	transition: color .5s;
 }
 
-*:focus{
-  outline: none;
+*:focus {
+  	outline: none;
 }
 
-.main{
+#main, #projects, #resume {
 	display: flex;
-	height: inherit;
-	background: var(--background-color) url(noise.png) top center;
+	height: 100%;
+	width: 100%;
 	justify-content: center;
 	justify-items: center;
-	color: var(--primary-text-color);
-	transition: color .5s;
-	transition: background-color .5s;
 }
 
-.container{
+.container {
 	position: relative;
 	display: flex;
 	justify-content: center;
@@ -55,14 +58,14 @@ a{
 	padding: 1em;
 }
 
-.container h1, .container h2{
+.container h1, .container h2 {
 	text-align: center;
 	padding-bottom: 20px;
 	border-bottom: .1em solid var(--primary-text-color);
 	transition: color .5s;
 }
 
-.container h3, .container h4, .container h5{
+.container h3, .container h4, .container h5 {
 	font-family: 'Raleway', sans-serif;
 }
 
@@ -74,33 +77,44 @@ a{
 	font-weight: 100;
 	font-size: 5vmax;
 	height: 60%;
-	width: 45%;
+	width: 50%;
 }
 
-#welcome-text{
+#welcome-text {
 	max-width: 90%;
 }
 
-#welcome-text-1{
+#welcome-text-1 {
 	color: var(--primary-text-color);
 	text-align: left;
 	transition: color .5s;
 }
 
-#welcome-text-2{
+#welcome-text-2 {
 	color: var(--secondary-text-color);
 	text-align: right;
 	transition: color .5s;
 }
 
-.bubbles{
-	position: absolute;
+.footer {
+	position: fixed;
+	bottom: .5rem;
+	right: 1rem;
+	padding: 0;
+	margin: 0;
+	font-family: "Raleway", sans-serif;
+    font-weight: 400;
+	font-size: 1.125vmax;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.bubbles {
+	position: fixed;
 	top: 1rem;
 	left: 1rem;
 	padding: 0;
 	margin: 0;
-	user-select: none;
-	-webkit-user-drag: none;
 	font-family: "Raleway", sans-serif;
     font-weight: 600;
 	font-size: 1.5vmax;
@@ -109,7 +123,7 @@ a{
 	list-style-type: none;
 }
 
-.bubble{
+.bubble {
 	position: relative;
 	display: block;
 	color: var(--primary-text-color);
@@ -121,7 +135,7 @@ a{
 	transition: all .5s ease-in-out;
 }
 
-.bubbles > li:not(:first-of-type){
+.bubbles > li:not(:first-of-type) {
 	margin-top: .5rem;
 }
 

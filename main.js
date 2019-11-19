@@ -1,25 +1,38 @@
-let welcome_text_list = shuffle([
-	("I am "+ ((new Date()).getFullYear()-2001)+" years old."),
-	"Welcome to my personal website.",
-	"I am always searching for new challenges.",
-	"I am currently working on my diploma project.",
-	"I am from Austria.",
-	"I do a lot of coding in my free time."
-])
+let startText = "Hello, my name is Julian."
 
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
+let textList = [
+	"Welcome to my personal website.",
+	"I am a freelance web designer and full-stack dev.",
+	"I am always searching for new challenges.",
+	"Let's build something meaningful together.",
+	"I am "+ ((new Date()).getFullYear()-2001)+" years old.",
+	"I am currently working on my diploma project.",
+]
 
 $(window, document, undefined).ready(()=>{
-	let texttyping = (options) => {
+
+	$(document).on("scroll", (e)=> {
+		return
+		var screenHeight = $("#main").height()
+		if (window.scrollY >= screenHeight)
+			$("#scroll-top").parent().show()
+		else
+			$("#scroll-top").parent().hide()
+
+		if(window.scrollY < screenHeight || window.scrollY >= 2*screenHeight)
+			$("#my-projects").parent().show()
+		else
+			$("#my-projects").parent().hide()
+		
+		if(window.scrollY < 2*screenHeight)
+			$("#my-resume").parent().show()
+		else
+			$("#my-resume").parent().hide()
+	})
+
+	$(document).trigger("scroll")
+
+	let textTyping = (options) => {
 		let el = options["element"]
 		if(el.attr("is-typing")=="true")return;
 		el.attr("is-typing", true)
@@ -51,16 +64,17 @@ $(window, document, undefined).ready(()=>{
 		setTimeout(functions[options["remove_chars"]?"remove":"add"], speed+(Math.random()*(speed*0.2)))
 	}
 
-	let show_welcome = ()=>{
+	let showWelcome = ()=>{
+		let i = 0;
 		let f = ()=>{
-			texttyping({
+			textTyping({
 				element: $("#welcome-text-2"),
 				speed: 100,
-				text: welcome_text_list[Math.floor(Math.random()*welcome_text_list.length)],
+				text: textList[(i++)%textList.length],
 				finished: ()=>{
-					setTimeout(()=>texttyping({
+					setTimeout(()=>textTyping({
 						element: $("#welcome-text-2"),
-						speed: 200,
+						speed: 50,
 						remove_chars: $("#welcome-text-2").text().length,
 						finished: ()=>{
 							setTimeout(f, 500)
@@ -69,12 +83,12 @@ $(window, document, undefined).ready(()=>{
 				}
 			})
 		}
-		texttyping({
+		textTyping({
 			element: $("#welcome-text-1"),
 			speed: 125,
-			text: "Hello, my name is Julian.",
+			text: startText,
 			finished: f
 		})
 	}
-	show_welcome()
+	showWelcome()
 })

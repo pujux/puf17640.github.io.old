@@ -12,20 +12,37 @@
 	<script src="main.js"></script>
 </head>
 <body>
-	<div class="main">
-		<div class="container">
-			<div id="welcome-text" class="text-typing">
-				<span id="welcome-text-1"></span><br>
-				<span id="welcome-text-2"></span>
-			</div>
-		<ul class="bubbles">
-			<li>
-				<a id="invert-page" class="bubble" onclick="javascript:$('body').toggleClass('inverted')"><span>invert</span></a>
-			</li>
-			<li>
-				<a id="say-hello" class="bubble" href="mailto:puf17640@spengergasse.at"><span>say hello</span></a>
-			</li>
-		</ul>
+	<div id="main">
+		<div id="welcome-text" class="text-typing">
+			<span id="welcome-text-1"></span><br>
+			<span id="welcome-text-2"></span>
+		</div>
+	</div>
+	<div id="projects">
+		<h1>Projects</h1>
+	</div>
+	<div id="resume">
+		<h1>Resume</h1>
+	</div>
+	<ul class="bubbles">
+		<li>
+			<a id="invert-page" class="bubble" onclick="javascript:$('body').toggleClass('inverted')"><span>invert</span></a>
+		</li>
+		<li>
+			<a id="say-hello" class="bubble" href="mailto:puf17640@spengergasse.at"><span>contact</span></a>
+		</li>
+		<li>
+			<a id="scroll-top" class="bubble" href="#main"><span>home</span></a>
+		</li>
+		<li>
+			<a id="my-projects" class="bubble" href="#projects"><span>projects</span></a>
+		</li>
+		<li>
+			<a id="my-resume" class="bubble" href="#resume"><span>resume</span></a>
+		</li>
+	</ul>
+	<div class="footer">
+		<p>Copyright © 2019 Julian Pufler</p>
 	</div>
 </body>
 </html>
